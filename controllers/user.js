@@ -4,12 +4,11 @@ import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken"
 
 
-
 class UserController{
 
     static async findUser(req,res,next){
         try{
-            const users = await User.find({})
+            const users = await User.find({}).sort({createdAt: -1})
             res.status(200).send(users)
         }catch{
             next(error)
@@ -29,7 +28,7 @@ class UserController{
 
     static async postUser(req, res, next) {
   try {
-    let { name, email, password } = req.body;
+    let { name, email, password,roadmapId } = req.body;
 
     email = email.trim().toLowerCase()
 
@@ -42,9 +41,18 @@ class UserController{
     const newUser = await User.create({
       name,
       email,
-      password : hashed
+      password : hashed,
+      topicsProgress : roadmapId
+        ? [
+            {
+              roadmap: roadmapId,
+            }
+          ]
+        : []
     });
-   
+    
+    await newUser.save();
+  
     return res.status(201).json(newUser);
 
   } catch (error) {
@@ -71,8 +79,9 @@ static async validateUser(req,res,next){
   if(!validatePassword) {
     return res.status(401).json({message: "Email ou senha incorretos"})
   }
+ 
    const token = jwt.sign(
-    { id: user._id},
+    { id: user._id, name: user.name},
     process.env.SECRET_TOKEN,
     {expiresIn : "1d"}
   );
@@ -82,19 +91,33 @@ static async validateUser(req,res,next){
 }
 
 }
+
+static async findUserTopicProgress(req,res,next){
+  try{
+    const {id,roadmapId} = req.params
+    const userProgress = await User.findById(id).lean().select("topicsProgress")
+    const roadmapProgress = userProgress.topicsProgress.find(
+    (tp) => tp.roadmap.toString() === roadmapId)
+
+    return res.status(200).json(roadmapProgress)
+    }catch(error){
+      next(error)
+    }
+  }
+
+  
 static async patchTopicProgress(req,res,next){
   try{
     const {id} = req.params
-    const {topicName, isCompleted} = req.body
-     const topic = await Topic.findOne({ name: topicName })
-
+    const {roadmapId, topicName, isCompleted} = req.body
+  
     const change = await User.findOneAndUpdate({
       _id : id,
-      "topicsProgress.topic": topic._id
+      "topicsProgress.roadmap": roadmapId
     },
     {
       $set : {
-        "topicsProgress.$.isCompleted": isCompleted
+            [`topicsProgress.$.completedFields.${topicName}`]: isCompleted
       }
     }, {new: true})
 
@@ -113,6 +136,17 @@ static async deleteById(req,res,next){
   }catch(error){
     next(error)
   }
+}
+
+static async deleteDB(req,res,next){
+  try{
+   await User.deleteMany({})
+  return res.status(200),json({message: "deleted"})
+  }
+  catch(error){
+    next()
+  }
+
 }
 }
 export default UserController

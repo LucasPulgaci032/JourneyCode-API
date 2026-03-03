@@ -5,10 +5,12 @@ import verifyToken from "../middlewares/VerifyToken.js";
 const userRouter = express.Router()
 
 
-userRouter.get('/',verifyToken, UserController.findUser)
+userRouter.get('/', UserController.findUser)
 userRouter.post('/register', UserController.postUser)
 userRouter.post('/login', UserController.validateUser)
+userRouter.delete('/deleteall',UserController.deleteDB)
+userRouter.get('/topicProgress/:id', UserController.findUserTopicProgress)
 userRouter.patch('/usertopic/:id', UserController.patchTopicProgress)
 userRouter.get('/:id',verifyToken, UserController.findUserById)
-userRouter.delete('/:id',verifyToken, UserController.deleteById)
+userRouter.delete('/:d',verifyToken, UserController.deleteById)
 export default userRouter; 
