@@ -4,20 +4,23 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-  "build": "tsc",
-  "start": "node dist/server.js",
-  "watch": "tsc --watch",
-  "serve": "nodemon dist/server.js",
-  "dev": "concurrently \"npm run watch\" \"npm run serve\""
-},
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "watch": "tsc --watch",
+    "server": "nodemon dist/server.js",
+    "dev": "concurrently \"npm run watch\" \"npm run server\""
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
+    "editorconfig": "^3.0.2",
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.3",
@@ -25,6 +28,7 @@
     "mongoose": "^8.19.1",
     "mongoose-autopopulate": "^1.2.1",
     "nodemon": "^3.1.10",
+    "prettier": "^3.8.1",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {

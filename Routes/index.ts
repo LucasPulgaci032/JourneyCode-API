@@ -5,14 +5,14 @@ import userRouter from "./UserRoutes.js";
 import dotenv from 'dotenv'
 import newTopicRouter from "./newTopicsRoutes.js";
 import userProgressRoute from "./userProgressRoutes.js";
-
+import { Express } from "express-serve-static-core";
 
 dotenv.config()
 const usrt = process.env.USER_ACCESS_ROUTE
 
 
-const router = (app) => {
-    app.route('/').get((req,res) =>
+const router = (app : Express) => {
+    app.route('/').get((req :Req,res: Res) =>
         res.status(200).send("funfou")
     )
    

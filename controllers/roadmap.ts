@@ -2,7 +2,7 @@ import {Roadmap} from "../models/roadmaps.js"
 
 class RoadmapControllers {
   
-  static async listData(req,res,next){
+  static async listData(req : Req, res : Res, next : Next){
       try{
         const busca = await Roadmap.find({})
         res.status(200).send(busca)
@@ -10,7 +10,7 @@ class RoadmapControllers {
         next(error)
       }
     }
-    static async listDataId(req,res,next){
+    static async listDataId(req : Req, res : Res, next : Next){
       try{
         const id = req.params.id;
         const busca = await Roadmap.findById(id)
@@ -20,7 +20,7 @@ class RoadmapControllers {
       }
     }
 
-    static async postData(req,res,next){
+    static async postData(req : Req, res : Res, next : Next){
       try{
         const body = await Roadmap.create(req.body)
         res.status(201).send({message:"objeto criado!",body})
@@ -29,7 +29,7 @@ class RoadmapControllers {
       }
     }
 
-    static async putData(req,res,next){
+    static async putData(req : Req, res : Res, next : Next){
         try{
           const {id} = req.params;
           const body = await Roadmap.findByIdAndUpdate(id,req.body,{new:true})
@@ -38,7 +38,7 @@ class RoadmapControllers {
           next(error)
         }
     }
-    static async patchData(req,res,next){
+    static async patchData(req : Req, res : Res, next : Next){
       try{
         const {id} = req.params
         const body = await Roadmap.findByIdAndUpdate(id,req.body, {new: true}).populate('topics')
@@ -48,16 +48,16 @@ class RoadmapControllers {
           next(error)
         }
     }
-    static async deleteData(req,res,next){
+    static async deleteData(req : Req, res : Res, next : Next){
       try{
         const {id} = req.params
-        const body = await Roadmap.findByIdAndDelete(id,req.body,{new:true})
-        res.status(200).send({message:"Recurso excluído"},body)
+        await Roadmap.findByIdAndDelete(id,req.body)
+        res.status(200).send({message:"Recurso excluído"})
       }catch(error){
         next(error)
       }
     }
-    static findByKey = async (req,res,next) => {
+    static findByKey = async (req : Req, res : Res, next : Next) => {
       try{
           const {name} = req.query;
           if(name !== null){

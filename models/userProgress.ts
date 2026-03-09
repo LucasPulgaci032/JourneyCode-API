@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
+import { IUserProgress } from "../Types/SchemaTypes.js";
 
-
-const userProgress = new mongoose.Schema({
+const userProgress = new mongoose.Schema<IUserProgress>({
    user : {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -25,4 +25,4 @@ const userProgress = new mongoose.Schema({
 {timestamps : true}).index({user : 1,roadmap: 1, topic : 1}, {unique: true})
 
 
-export const UserProg =  mongoose.model('UserProgress', userProgress)
+export const UserProg =  mongoose.model<IUserProgress>('UserProgress', userProgress)

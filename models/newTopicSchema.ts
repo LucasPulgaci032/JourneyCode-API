@@ -1,6 +1,10 @@
 
+import { INewTopic } from "../Types/SchemaTypes.js";
+
+
+
 import mongoose from "mongoose";
-const newtopicSchema = new mongoose.Schema({
+const newtopicSchema = new mongoose.Schema<INewTopic>({
   roadmap: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "roadmaps",
@@ -19,4 +23,4 @@ const newtopicSchema = new mongoose.Schema({
 
 }, { timestamps: true, versionKey : false });
 
-export const NewTopic = mongoose.model("NewTopic", newtopicSchema);
+export const NewTopic = mongoose.model<INewTopic>("NewTopic", newtopicSchema);

@@ -1,7 +1,7 @@
 import { UserProg } from "../models/userProgress.js";
 
 class UserProgressController{
-    static async findUserProgress(req,res,next){
+    static async findUserProgress(req: Req, res: Res, next :Next){
         try{
            
         const userProgress = await UserProg.find({})
@@ -11,9 +11,9 @@ class UserProgressController{
         }
     }
 
-    static async findByRoadmap(req,res,next){
+    static async findByRoadmap(req: Req, res: Res, next :Next){
         try{
-        const userId = req.user.id
+        const userId = req.user!.id
         const {roadmapId} = req.params
         const userProgress = await UserProg.find({
             user : userId,
@@ -26,9 +26,9 @@ class UserProgressController{
 
     }
    
-    static async markTopic(req,res,next){
+    static async markTopic(req: Req, res: Res, next :Next){
     try {
-        const userId = req.user.id;
+        const userId = req.user!.id;
         const { roadmap, topic, isCompleted } = req.body; 
         console.log("BODY:", req.body);
         const progress = await UserProg.findOneAndUpdate(
@@ -51,6 +51,20 @@ class UserProgressController{
        next(error)
     }
 }
+
+    static async findAllCompletedTopics(req: Req, res: Res, next :Next){
+        try{
+          const {id} = req.params
+          const allCompletedTopics = await UserProg.find({
+            user : id,
+            isCompleted : true
+          }).lean()
+          res.status(200).json(allCompletedTopics)
+        }catch(error){
+          next(error)
+        }
+    }
+
 }
 
 export default UserProgressController

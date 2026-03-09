@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
+import { IRoadmap } from "../Types/SchemaTypes.js";
 
-
-const roadmaps = new mongoose.Schema({
+const roadmaps = new mongoose.Schema<IRoadmap>({
     name: {
         type : String,
         required:true
@@ -16,11 +16,11 @@ const roadmaps = new mongoose.Schema({
     topics: [{
         type : mongoose.Schema.Types.ObjectId,
         ref: "NewTopic" ,
-        required: true,
-        autopopulate : true
+        required: true
+      
     }]
        
     } 
 )
 
-export const Roadmap = mongoose.model("roadmaps",roadmaps);
+export const Roadmap = mongoose.model<IRoadmap>("roadmaps",roadmaps);

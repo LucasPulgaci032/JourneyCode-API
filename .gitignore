@@ -3,3 +3,10 @@ package-lock.json
 node_modules
 note.txt
 dist
+Dockerfile
+
+topics.js
+topicSchema.js
+TopicsRoutes.js
+.editorconfig
+.dockerignore

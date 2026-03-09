@@ -1,8 +1,9 @@
+
 import { NewTopic } from "../models/newTopicSchema.js";
 import { Roadmap } from "../models/roadmaps.js";
 
 class newTopicsController{
-    static async findNewTopics(req,res,next){
+    static async findNewTopics(req : Req, res : Res , next : Next){
         try{
        const newTopics = await NewTopic.find({}).populate('roadmap','name')
        res.status(200).send(newTopics)
@@ -10,7 +11,7 @@ class newTopicsController{
             next(error)
         }
     }
-    static async findByKey(req,res,next){
+    static async findByKey(req : Req, res : Res , next : Next){
         try{
         const {roadmapName} = req.query
         if(!roadmapName) return res.status(400).json({message : 'nome inesistente'})
@@ -29,10 +30,10 @@ class newTopicsController{
             next(error)
         }
     }
-    static async deleteAllNewTopics(req,res,next){
+    static async deleteAllNewTopics(req : Req, res : Res , next : Next){
         try{
           await NewTopic.deleteMany({})
-         return res.status(200),json({message: "deleted"})
+         return res.status(200).json({message: "deleted"})
          }
          catch(error){
            next()
