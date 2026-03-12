@@ -7,5 +7,6 @@ const newTopicRouter = express.Router()
 newTopicRouter
   .get('/',newTopicsController.findNewTopics)
   .get('/roadmap', newTopicsController.findByKey)
-  .delete('/deleteAllTpc',newTopicsController.deleteAllNewTopics)
+  .get('/:id', newTopicsController.findTopicById)
+  //.delete('/deleteAllTpc',newTopicsController.deleteAllNewTopics)
 export default newTopicRouter

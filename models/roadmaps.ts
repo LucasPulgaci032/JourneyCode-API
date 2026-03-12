@@ -10,15 +10,9 @@ const roadmaps = new mongoose.Schema<IRoadmap>({
     description: {
         type : [String],
         required: true
-        
-      
+             
     },
-    topics: [{
-        type : mongoose.Schema.Types.ObjectId,
-        ref: "NewTopic" ,
-        required: true
-      
-    }]
+    
        
     } 
 )

@@ -1,8 +1,8 @@
 import ErroBase from "./erroBase.js";
 
 class NotFoundError extends ErroBase {
-   constructor(msg = "Item not found"){
-    super(msg,404)
+   constructor(message = "Item not found"){
+    super(message,404)
    }
 }
 

@@ -1,17 +1,17 @@
 
-import RoadmapControllers from '../controllers/roadmap.js'
+import RoadmapController from '../controllers/roadmapController.js';
 import express from 'express';
 
 const roadmapRouter = express.Router()
 
 
-roadmapRouter.get('/',RoadmapControllers.listData)
-roadmapRouter.post('/',RoadmapControllers.postData)
-roadmapRouter.get('/lang', RoadmapControllers.findByKey)
-roadmapRouter.get('/:id',RoadmapControllers.listDataId)
-roadmapRouter.put('/:id',RoadmapControllers.putData)
-roadmapRouter.patch('/:id',RoadmapControllers.patchData)
-roadmapRouter.delete('/:id', RoadmapControllers.deleteData)
+roadmapRouter.get('/',RoadmapController.listData)
+roadmapRouter.post('/',RoadmapController.postData)
+roadmapRouter.get('/lang', RoadmapController.findByKey)
+roadmapRouter.get('/:id',RoadmapController.listDataId)
+roadmapRouter.put('/:id',RoadmapController.putData)
+roadmapRouter.patch('/:id',RoadmapController.patchData)
+roadmapRouter.delete('/:id', RoadmapController.deleteData)
 
 export default roadmapRouter;
 

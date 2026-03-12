@@ -1,5 +1,5 @@
 import express from 'express'
-import UserProgressController from '../controllers/userProgress.js'
+import UserProgressController from '../controllers/userProgressController.js'
 import verifyToken from '../middlewares/VerifyToken.js'
 
 const userProgressRoute = express.Router()
