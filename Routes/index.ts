@@ -1,6 +1,5 @@
 
 import roadmapRouter from "./RoadmapRoutes.js";
-import topicsRouter from "./TopicsRoutes.js";
 import userRouter from "./UserRoutes.js";
 import dotenv from 'dotenv'
 import newTopicRouter from "./newTopicsRoutes.js";
@@ -13,13 +12,12 @@ const usrt = process.env.USER_ACCESS_ROUTE
 
 const router = (app : Express) => {
     app.route('/').get((req :Req,res: Res) =>
-        res.status(200).send("funfou")
+        res.status(200).send("server RODANDO")
     )
    
  
   
     app.use('/roadmaps',roadmapRouter)
-    app.use('/topics',topicsRouter)
     app.use(usrt, userRouter)
     app.use('/newTopics',newTopicRouter)
     app.use('/userProgress', userProgressRoute)
