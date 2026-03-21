@@ -14,7 +14,7 @@ class UserProgressService{
       
       
         if(!data.userId || !data.roadmapId) throw new BadRequestError()
-
+            console.log("userId:", data.userId, "roadmapId:", data.roadmapId);
         return UserProg.find({
              user : data.userId,
              roadmap: data.roadmapId
