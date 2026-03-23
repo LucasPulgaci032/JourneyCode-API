@@ -5,9 +5,9 @@ dotenv.config();
 
 const PORT  = process.env.PORT
 
-app.listen(PORT, () => {
+app.listen(PORT,"0.0.0.0", () => {
 
-    console.log(`servidor funfando na porta ${PORT}`);
+    console.log(`SERVER RODANDO NA PORTA ${PORT}`);
   
     
 }) 

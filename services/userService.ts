@@ -1,8 +1,9 @@
+import mongoose from "mongoose"
 import { User } from "../models/userSchema.js"
 import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken"
 import { UserProg } from "../models/userProgress.js"
-import { IUser, IUserProgress, TokenPayload } from "../Types/SchemaTypes.js"
+import { IUserProgress, TokenPayload } from "../Types/SchemaTypes.js"
 import { CreateUserDTO } from "../DTO/createUserDTO.js"
 import ConflictError from "../errors/conflictError.js"
 import { ValidateUserDTO } from "../DTO/validateUserDTO.js"
@@ -118,6 +119,19 @@ static async findUserTopicProgress(data : ParamsUserTopicProgress) : Promise<IUs
     return progress
   }
 }
+
+static async saveRoadmap(userId: string, roadmapId : string){
+    return User.findOneAndUpdate({
+      _id : userId
+    },
+    {$addToSet : {
+          roadmaps: new mongoose.Types.ObjectId(roadmapId)
+    },
+ }
+  ,{new : true}
+  )
+}
+
   
 static async patchTopicProgress(id : string, roadmapId : string, topicName : string , isCompleted : boolean){
   

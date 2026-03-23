@@ -58,12 +58,23 @@ class UserController {
         }
     }
 
+    static async saveRoadmap(req : Req, res : Res, next : Next){
+        try{
+            const id = req.user!.id
+            const {roadmapId} = req.body
+            const savedRoadmap = await UserService.saveRoadmap(id, roadmapId)
+            res.status(200).json(savedRoadmap)
+        }catch(error){
+            next(error)
+        }
+    }
+
     static async patchTopicProgress(req : Req, res : Res, next : Next){
         try{
              const {id} = req.params
              const {roadmapId, topicName, isCompleted} = req.body
-             const roadmapTopicUpadated = await UserService.patchTopicProgress(id as string, roadmapId, topicName, isCompleted )
-             res.status(200).json(roadmapTopicUpadated)
+             const roadmapTopicUpdated = await UserService.patchTopicProgress(id as string, roadmapId, topicName, isCompleted )
+             res.status(200).json(roadmapTopicUpdated)
         }catch(error){
             next(error)
         }

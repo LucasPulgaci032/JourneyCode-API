@@ -3,7 +3,8 @@ package-lock.json
 node_modules
 note.txt
 dist
-Dockerfile
+docker-compose.yml
+nginx.conf
 
 topics.js
 topicSchema.js

@@ -9,7 +9,7 @@ const userProgress = new mongoose.Schema<IUserProgress>({
    },
    roadmap : {
     type: mongoose.Schema.Types.ObjectId,
-    ref : 'roadmaps',
+    ref : 'Roadmap',
     required : true
    },
    topic : {

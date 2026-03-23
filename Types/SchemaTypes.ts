@@ -24,7 +24,8 @@ export interface IRoadmap {
 export interface IUser {
     name: string;
     email: string 
-    password :string
+    password :string,
+    roadmaps: string[],
     theme: boolean
   }
 

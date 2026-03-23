@@ -6,9 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "watch": "tsc --watch",
-    "server": "nodemon dist/server.js",
-    "dev": "concurrently \"npm run watch\" \"npm run server\""
+    "dev":  "tsx watch server.ts"
   },
   "keywords": [],
   "author": "",
@@ -34,8 +32,10 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/express-serve-static-core": "^5.1.1",
     "@types/node": "^25.3.3",
     "concurrently": "^9.2.1",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.21.0"
   }
 }

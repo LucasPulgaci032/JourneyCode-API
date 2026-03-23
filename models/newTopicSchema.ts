@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 const newtopicSchema = new mongoose.Schema<INewTopic>({
   roadmap: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "roadmaps",
+    ref: "Roadmap",
     
   },
 

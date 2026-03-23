@@ -17,4 +17,4 @@ const roadmaps = new mongoose.Schema<IRoadmap>({
     } 
 )
 
-export const Roadmap = mongoose.model<IRoadmap>("roadmaps",roadmaps);
+export const Roadmap = mongoose.model<IRoadmap>("Roadmap",roadmaps);
