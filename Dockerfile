@@ -10,7 +10,7 @@ COPY . .
 
 RUN npm run build
 
-RUN npm pruno --omit=dev
+RUN npm prune --omit=dev
 
 EXPOSE 3000
 
