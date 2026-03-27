@@ -34,3 +34,10 @@ export interface TokenPayload {
   name: string,
   theme : boolean
 }  
+
+export interface ICodeTopics {
+  roadmap: Types.ObjectId,
+  topic: Types.ObjectId,
+  code: string
+
+}
